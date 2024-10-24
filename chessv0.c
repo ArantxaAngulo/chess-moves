@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #define SIZE 8 //define tamano del tablero, constante global
 
@@ -103,4 +104,26 @@ int main() {
     free(malla);
 
     return 0;
+
+    typedef struct {
+        int fila;
+        int columna;
+        int valor;
+    } mov;
+
+    void convCoord(char* coord, int* fila, int* columna) {
+    *columna = toupper(coord[0]) - 'A';
+    *fila = 8 - (coord[1] - '0');
+    }
+
+    int valorPieza(char pieza){
+        switch(pieza){
+            case 'P': return 1;
+             case 'A': case 'C': return 3;
+            case 'T': return 5;
+            case 'Q': return 8;
+            case 'K': return 10;
+            default: return 0;
+         }   
+        }
 }
