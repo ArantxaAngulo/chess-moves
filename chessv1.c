@@ -188,13 +188,19 @@ int main() {
     int fila, columna;
     convertirCoordenada(coordenada, &fila, &columna);
 
-    // encontrar y mostrar los movimientos validos
-    printf("\nAnalizando movimientos para la torre en %s:\n", coordenada);
-    movimientosTorre(malla, fila, columna);
+    // Verificar el tipo de pieza protagonista y llamar a la función correspondiente
+    char piezaProtagonista = malla[fila][columna]->pieza;
+    printf("\nAnalizando movimientos para la pieza en %s:\n", coordenada);
 
-    // encontrar y mostrar los movimientos válidos del alfil
-    printf("\nAnalizando movimientos para el alfil en %s:\n", coordenada);
-    movimientosAlfil(malla, fila, columna);
+        if (piezaProtagonista == 'T') {
+            printf("Pieza protagonista: Torre\n");
+            movimientosTorre(malla, fila, columna);
+        } else if (piezaProtagonista == 'A') {
+            printf("Pieza protagonista: Alfil\n");
+            movimientosAlfil(malla, fila, columna);
+        } else {
+            printf("Pieza no válida para este análisis. Solo se permiten Torres (T) y Alfiles (A).\n");
+        }
 
     // Liberar memoria
     for (int i = 0; i < SIZE; i++) {
